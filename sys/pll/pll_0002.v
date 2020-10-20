@@ -14,12 +14,21 @@ module  pll_0002(
 	output wire locked
 );
 
+	//Jaguar System clock is as follows
+	//	PAL: ECX-2448 - 26.5939mhz (/4 = 13.29695mhz for 68000)
+	//	NTSC: ECX-2449 - 26.590906mhz (/4 = 13.295453mhz for 68000)
+	//
+	//Video subcarrier is generated using an additional XTAL which is then somehow latched by the video sync??
+	//
+	//	PAL: ECX-2453 - 17.734475mhz
+	//	NTSC: ECX-2454 - 14.31818mhz
+	
 	altera_pll #(
 		.fractional_vco_multiplier("true"),
 		.reference_clock_frequency("50.0 MHz"),
 		.operation_mode("direct"),
 		.number_of_clocks(1),
-		.output_clock_frequency0("106.364000 MHz"),
+		.output_clock_frequency0("106.375600 MHz"),
 		.phase_shift0("0 ps"),
 		.duty_cycle0(50),
 		.output_clock_frequency1("0 MHz"),
